@@ -69,6 +69,7 @@ const EmailForm = ({ onClose }) => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        timeout:10000
       });
       if (response.data.trim() === 'success') {
         dispatch({ type: 'SUBMIT_SUCCESS' });
