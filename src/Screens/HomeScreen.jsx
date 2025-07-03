@@ -26,8 +26,8 @@ const HomeScreen = () => {
     };
 
     useEffect(() => {
-      fadeAnim.setValue(0);
-      if (showForm) {
+        fadeAnim.setValue(0);
+        if (showForm) {
             Animated.timing(fadeAnim, {
                 toValue: 1,
                 duration: 800,
@@ -68,7 +68,7 @@ const HomeScreen = () => {
                         <EmailForm onClose={handleHideForm} />
                     </Animated.View>
                     <StyledText style={{ display: shouldRenderForm ? 'none' : 'flex' }}>
-                        Propera is a platform that connects you with the best local businesses, offering exclusive deals and experiences.
+                        Exclusive access! Enter your email and be among the first to experience Propera
                     </StyledText>
                 </EmailBox>
             </ScrollView>
