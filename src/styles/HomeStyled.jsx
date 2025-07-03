@@ -27,7 +27,7 @@ export const EmailBox = styled(({ touchable, ...props }) => {
 `;
 export const StyledText = styled.Text`
   color: #000;
-  font-size: 13px;
+  font-size: 15px;
   text-align: center;
   line-height: 20px;
   font-family: ${Fonts.regular};
@@ -100,10 +100,9 @@ export const SuccessContainer = styled(View)`
 `;
 
 export const SuccessText = styled(Text)`
-  font-size: 13px;
+  font-size: 15px;
   color: #000;
   font-family: ${Fonts.regular};
-  margin-bottom: 20px;
   line-height: 20px;
   text-align: center;
 `;

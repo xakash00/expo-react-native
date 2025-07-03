@@ -11,6 +11,7 @@
     "lint": "expo lint"
   },
   "dependencies": {
+    "@expo/env": "^1.0.6",
     "@expo/vector-icons": "^14.1.0",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
@@ -32,6 +33,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.4",
+    "react-native-dotenv": "^3.4.11",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
@@ -46,6 +48,7 @@
     "@types/react": "~19.0.10",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~9.2.0",
+    "metro-react-native-babel-preset": "^0.77.0",
     "typescript": "~5.8.3"
   },
   "private": true

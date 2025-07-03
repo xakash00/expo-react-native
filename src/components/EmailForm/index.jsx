@@ -1,10 +1,10 @@
-import { MOBILE_MAIL_URL } from '@env';
 import axios from 'axios';
 import React, { useEffect, useReducer, useRef } from 'react';
 import { ActivityIndicator, Alert, Animated, Platform, ToastAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { DFlexButton } from '../../styles';
 import { ButtonText, ErrorText, FormContainer, Input, SubmitButton, SuccessContainer, SuccessText, Underline } from '../../styles/HomeStyled';
+import { config } from '../../utils/config';
 
 const initialState = {
   email: '',
@@ -65,7 +65,7 @@ const EmailForm = ({ onClose }) => {
       const formData = new FormData();
       formData.append('email', email);
 
-      const response = await axios.post(`${MOBILE_MAIL_URL}/MobileMail.php`, formData, {
+      const response = await axios.post(`${config.BASE_URL}/MobileMail.php`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -107,7 +107,7 @@ const EmailForm = ({ onClose }) => {
 
   if (isSubmitted) {
     return (
-      <Animated.View style={{ opacity: fadeAnim }}>
+      <Animated.View style={{opacity:fadeAnim}} >
         <SuccessContainer>
           <SuccessText>You’re on the list! Get ready for something extraordinary.{"\n"}Your exclusive invite will arrive as soon as
           the doors open.</SuccessText>
