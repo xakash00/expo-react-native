@@ -1,10 +1,10 @@
+import { MOBILE_MAIL_URL } from '@env';
 import axios from 'axios';
 import React, { useEffect, useReducer, useRef } from 'react';
 import { ActivityIndicator, Alert, Animated, Platform, ToastAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { DFlexButton } from '../../styles';
-import { ButtonText, ErrorText, FormContainer, Input, ResetButton, ResetButtonText, SubmitButton, SuccessContainer, SuccessText, Underline } from '../../styles/HomeStyled';
-import RecaptchaWebView from '../RecaptchaWebView';
+import { ButtonText, ErrorText, FormContainer, Input, SubmitButton, SuccessContainer, SuccessText, Underline } from '../../styles/HomeStyled';
 
 const initialState = {
   email: '',
@@ -46,7 +46,6 @@ const SubmitIcon = <Icon name="arrow-right" size={18} color="#000" />
 const EmailForm = ({ onClose }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const { email, error, isSubmitting, isSubmitted } = state;
-  const recaptcha = useRef(null);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const validateEmail = (email) => {
@@ -54,44 +53,35 @@ const EmailForm = ({ onClose }) => {
     return re.test(email);
   };
 
-    const handleVerify = async (token) => {
-    try {
-      const formData = new FormData();
-      formData.append('email', email);
-      formData.append('recaptcha_token', token);
-
-
-      const response = await axios.post('https://propera.ai/mail.php', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      
-
-      if (response.data.trim() === 'success') {
-        dispatch({ type: 'SUBMIT_SUCCESS' });
-        showToast('Thank you for subscribing!');
-      } else if (response.data.trim() === 'recaptcha_error') {
-        showToast('reCAPTCHA verification failed. Please try again.');
-        dispatch({ type: "SET_SUBMIT", payload: false });
-      } else {
-        showToast('There was an error sending the email. Please try again.');
-        dispatch({ type: "SET_SUBMIT", payload: false });
-      }
-    } catch (err) {
-      dispatch({ type: 'SET_ERROR', payload: 'Submission failed. Please try again.' });
-      showToast('There was a problem with the server. Please try again later.');
-    }
-  };
-
-    const handleSubmit = async () => {
+  const handleSubmit = async () => {
     if (!validateEmail(email)) {
       dispatch({ type: 'SET_ERROR', payload: 'Please enter a valid email address' });
       return;
     }
 
     dispatch({ type: 'SUBMIT_START' });
-    recaptcha.current?.execute('submit'); // triggers reCAPTCHA
+
+    try {
+      const formData = new FormData();
+      formData.append('email', email);
+
+      const response = await axios.post(`${MOBILE_MAIL_URL}/MobileMail.php`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      if (response.data.trim() === 'success') {
+        dispatch({ type: 'SUBMIT_SUCCESS' });
+        showToast('Thank you for subscribing!');
+      } else {
+        showToast('There was an error sending the email. Please try again.');
+        dispatch({ type: "SET_SUBMIT", payload: false });
+      }
+    } catch (err) {
+      console.log({err});
+      dispatch({ type: 'SET_ERROR', payload: 'Submission failed. Please try again.' });
+      showToast('There was a problem with the server. Please try again later.');
+    }
   };
 
   useEffect(() => {
@@ -99,7 +89,7 @@ const EmailForm = ({ onClose }) => {
       fadeAnim.setValue(0);
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 800,
+        duration: 500,
         useNativeDriver: true,
       }).start();
     }
@@ -108,7 +98,7 @@ const EmailForm = ({ onClose }) => {
   const handleReset = () => {
     Animated.timing(fadeAnim, {
       toValue: 0,
-      duration: 800,
+      duration: 500,
       useNativeDriver: true,
     }).start(() => {
       dispatch({ type: 'RESET_FORM' });
@@ -119,10 +109,8 @@ const EmailForm = ({ onClose }) => {
     return (
       <Animated.View style={{ opacity: fadeAnim }}>
         <SuccessContainer>
-          <SuccessText>Thank you! We'll contact you soon.</SuccessText>
-          <ResetButton onPress={handleReset}>
-            <ResetButtonText>Submit another email</ResetButtonText>
-          </ResetButton>
+          <SuccessText>You’re on the list! Get ready for something extraordinary.{"\n"}Your exclusive invite will arrive as soon as
+          the doors open.</SuccessText>
         </SuccessContainer>
       </Animated.View>
     );
@@ -130,7 +118,6 @@ const EmailForm = ({ onClose }) => {
 
   return (
     <FormContainer>
-      <RecaptchaWebView ref={recaptcha} onVerify={handleVerify} />
       <Input
         placeholder="Enter your email"
         placeholderTextColor={'#999'}
@@ -138,6 +125,8 @@ const EmailForm = ({ onClose }) => {
         onChangeText={(text) => dispatch({ type: 'UPDATE_EMAIL', payload: text })}
         keyboardType="email-address"
         autoCapitalize="none"
+        underlineColorAndroid='transparent'
+        borderWidth={0}
       />
       <Underline />
       {error ? <ErrorText>{error}</ErrorText> : null}

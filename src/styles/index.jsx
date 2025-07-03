@@ -21,7 +21,7 @@ export const Overlay = styled.View`
 export const LogoCircle = styled.TouchableOpacity`
 width: ${SizeConfig.width * 8}px;
 height: ${SizeConfig.width * 8}px;
-background-color: #FAF0E6;
+background-color: #FAF0E6CC;
 border-radius: ${SizeConfig.width * 50}px;
 align-items: center;
 justify-content: center;

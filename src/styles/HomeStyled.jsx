@@ -23,7 +23,7 @@ export const EmailBox = styled(({ touchable, ...props }) => {
   border-radius: 8px;
   text-align: center;
   padding: 16px 16px;
-  margin-top: ${SizeConfig.width*5}px;
+  margin-top: ${SizeConfig.width*8}px;
 `;
 export const StyledText = styled.Text`
   color: #000;
@@ -57,7 +57,7 @@ export const FormContainer = styled(View)`
 `;
 
 export const Input = styled(TextInput)`
-  height: 40px;
+  height: 30px;
   padding: 0 5px;
   font-size: 13px;
   color: #000;
@@ -104,6 +104,7 @@ export const SuccessText = styled(Text)`
   color: #000;
   font-family: ${Fonts.regular};
   margin-bottom: 20px;
+  line-height: 20px;
   text-align: center;
 `;
 
