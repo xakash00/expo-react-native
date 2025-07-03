@@ -63,12 +63,13 @@ export const Input = styled(TextInput)`
   color: #000;
   width: 100%;
   font-family: ${Fonts.regular};
+  text-decoration: none;
 `;
 
 export const Underline = styled.View`
   height: 1px;
   margin-bottom: 5px;
-  background-color: #000;
+  background-color: #808080;
   width: 100%;
 `;
 
@@ -87,9 +88,9 @@ export const SubmitButton = styled(TouchableOpacity)`
   border-radius: 4px;
   justify-content: center;
   align-items: center;
-  margin-vertical: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   width: 100%;
-  margin-top: 20px;
 `;
 
 
@@ -127,7 +128,8 @@ export const ButtonContainer = styled(TouchableOpacity)`
   border-radius: 4px;
   justify-content: center;
   align-items: center;
-  margin-vertical: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 `;
 
 export const ButtonContent = styled(View)`

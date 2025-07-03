@@ -66,7 +66,7 @@ const EmailForm = ({ onClose }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-console.log({response,token, email});
+      
 
       if (response.data.trim() === 'success') {
         dispatch({ type: 'SUBMIT_SUCCESS' });

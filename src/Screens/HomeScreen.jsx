@@ -63,17 +63,12 @@ const HomeScreen = () => {
                     <Image source={require('../assets/images/propera-logo.png')} style={{ width: '100%', height: '100%' }} />
                 </LogoWrapper>
                 <EmailBox touchable={!showForm} onPress={!showForm ? handleShowForm : undefined}>
-                    {
-                        shouldRenderForm ? (
-                            <Animated.View style={{ opacity: fadeAnim }}>
-                                <EmailForm onClose={handleHideForm} />
-                            </Animated.View>
-                        ) : (
-                            <StyledText>
-                                Propera is a platform that connects you with the best local businesses, offering exclusive deals and experiences.
-                            </StyledText>
-                        )
-                    }
+                    <Animated.View style={[{ opacity: fadeAnim }, { display: shouldRenderForm ? 'flex' : 'none' }]}>
+                        <EmailForm onClose={handleHideForm} />
+                    </Animated.View>
+                    <StyledText style={{ display: shouldRenderForm ? 'none' : 'flex' }}>
+                        Propera is a platform that connects you with the best local businesses, offering exclusive deals and experiences.
+                    </StyledText>
                 </EmailBox>
             </ScrollView>
         </MainLayout>

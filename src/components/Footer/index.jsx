@@ -34,13 +34,13 @@ const Footer = () => {
     <ContactContainer>
       <TouchableOpacity onPress={handlePress}>
         <ContactText>
-          Contact us: <LinkText>hello@propera.global</LinkText>
+          Contact us: <LinkText>hello@propera.ai</LinkText>
         </ContactText>
       </TouchableOpacity>
       <FooterLogoContainer>
-        <LogoCircle onPress={() => handleSocialPress('fb://profile/100094492819251', 'https://www.facebook.com/propera.global')}>{facebook}</LogoCircle>
-        <LogoCircle onPress={() => handleSocialPress('instagram://user?username=propera.global', 'https://www.instagram.com/propera.global')}>{instagram}</LogoCircle>
-        <LogoCircle onPress={() => handleSocialPress('linkedin://company/propera.global', 'https://www.linkedin.com/company/propera.global')}>{linkedin}</LogoCircle>
+        <LogoCircle onPress={() => handleSocialPress('fb://profile/100094492819251', 'https://www.facebook.com/propera.aiglobal')}>{facebook}</LogoCircle>
+        <LogoCircle onPress={() => handleSocialPress('instagram://user?username=propera.ai', 'https://www.instagram.com/propera.ai')}>{instagram}</LogoCircle>
+        <LogoCircle onPress={() => handleSocialPress('linkedin://company/propera.ai', 'https://www.linkedin.com/company/propera.global')}>{linkedin}</LogoCircle>
       </FooterLogoContainer>
     </ContactContainer>
   )
