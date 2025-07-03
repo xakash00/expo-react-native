@@ -17,7 +17,7 @@ const HomeScreen = () => {
     const handleHideForm = () => {
         Animated.timing(fadeAnim, {
             toValue: 0,
-            duration: 300,
+            duration: 800,
             useNativeDriver: true,
         }).start(() => {
             setShowForm(false);
@@ -26,10 +26,11 @@ const HomeScreen = () => {
     };
 
     useEffect(() => {
-        if (showForm) {
+      fadeAnim.setValue(0);
+      if (showForm) {
             Animated.timing(fadeAnim, {
                 toValue: 1,
-                duration: 300,
+                duration: 800,
                 useNativeDriver: true,
             }).start();
         }

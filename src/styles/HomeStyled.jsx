@@ -29,7 +29,7 @@ export const StyledText = styled.Text`
   color: #000;
   font-size: 13px;
   text-align: center;
-  line-height: 24px;
+  line-height: 20px;
   font-family: ${Fonts.regular};
 `;
 export const ContactContainer = styled.View`
