@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import 'react-native-reanimated';
 import HomeScreen from '../src/Screens/HomeScreen'; // Updated path if you're not using path aliases
+import { ToastProvider } from '../src/components/ToastProvider';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -24,8 +25,10 @@ export default function RootLayout() {
   }, []);
 
   return (
+    <ToastProvider>
     <View style={{ flex: 1 }}>
       <HomeScreen />
     </View>
+    </ToastProvider>
   );
 }

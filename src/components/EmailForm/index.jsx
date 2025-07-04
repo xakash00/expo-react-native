@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useReducer, useRef } from 'react';
-import { ActivityIndicator, Alert, Animated, Platform, ToastAndroid } from 'react-native';
+import { ActivityIndicator, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { DFlexButton } from '../../styles';
 import { ButtonText, ErrorText, FormContainer, Input, SubmitButton, SuccessContainer, SuccessText, Underline } from '../../styles/HomeStyled';
 import { config } from '../../utils/config';
+import { showToast } from "../ToastProvider/toast";
 
 const initialState = {
   email: '',
@@ -13,13 +14,6 @@ const initialState = {
   isSubmitted: false
 };
 
-const showToast = (message) => {
-  if (Platform.OS === 'android') {
-    ToastAndroid.show(message, ToastAndroid.SHORT);
-  } else {
-    Alert.alert(message);
-  }
-};
 
 const formReducer = (state, action) => {
   switch (action.type) {
@@ -73,15 +67,15 @@ const EmailForm = ({ onClose }) => {
       });
       if (response.data.trim() === 'success') {
         dispatch({ type: 'SUBMIT_SUCCESS' });
-        showToast('Thank you for subscribing!');
+        showToast.success('Thank you for subscribing!');
       } else {
-        showToast('There was an error sending the email. Please try again.');
+        showToast.error('There was an error sending the email. Please try again.');
         dispatch({ type: "SET_SUBMIT", payload: false });
       }
     } catch (err) {
       console.log({err});
       dispatch({ type: 'SET_ERROR', payload: 'Submission failed. Please try again.' });
-      showToast('There was a problem with the server. Please try again later.');
+      showToast.error('There was a problem with the server. Please try again later.');
     }
   };
 
