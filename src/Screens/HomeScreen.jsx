@@ -49,6 +49,8 @@ const HomeScreen = () => {
         <MainLayout>
             <ScrollView
                 contentContainerStyle={{ flexGrow: 1, alignItems: 'center', width: '100%' }}
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl
                         refreshing={refreshing}
