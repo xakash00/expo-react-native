@@ -4,26 +4,26 @@ import { Fonts } from "../utils/fonts";
 import { SizeConfig } from "../utils/size";
 
 export const LogoWrapper = styled.View`
-width:${SizeConfig.width*50}px;
-height:${SizeConfig.width*50}px;
+width:${SizeConfig.width * 50}px;
+height:${SizeConfig.width * 50}px;
 background-color: #FAF0E6;
-border-radius: ${SizeConfig.width*50}px;
-padding: ${SizeConfig.width*5}px;
-margin-top: ${SizeConfig.width*40}px;
+border-radius: ${SizeConfig.width * 50}px;
+padding: ${SizeConfig.width * 5}px;
+margin-top: ${SizeConfig.width * 40}px;
 `
 
 export const EmailBox = styled(({ touchable, ...props }) => {
   const Component = touchable ? TouchableOpacity : View;
   return <Component {...props} />;
 })`
-  width: ${SizeConfig.width*90}px;
+  width: ${SizeConfig.width * 90}px;
   background-color: #FAF0E6CC;
   font-size: 20px;
   line-height: 1.4px;
   border-radius: 8px;
   text-align: center;
   padding: 16px 16px;
-  margin-top: ${SizeConfig.width*8}px;
+  margin-top: ${SizeConfig.width * 8}px;
 `;
 export const StyledText = styled.Text`
   color: #000;
@@ -33,9 +33,10 @@ export const StyledText = styled.Text`
   font-family: ${Fonts.regular};
 `;
 export const ContactContainer = styled.View`
-  margin-top: ${SizeConfig.width*5}px;
+  margin-top: ${SizeConfig.width * 5}px;
   position: absolute;
-  bottom: ${SizeConfig.width*15}px;
+  bottom: ${SizeConfig.width * 15}px;
+  width: 100%;
 `;
 
 export const ContactText = styled.Text`
